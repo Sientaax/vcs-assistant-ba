@@ -1,5 +1,6 @@
 {
-  "name": "my-app",
+  "name": "vcs-assistant-system",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
