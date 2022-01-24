@@ -1,11 +1,11 @@
 import './App.css';
 
-function App() {
+import { Notification } from './components/Notification/notification'
+
+export const App = () => {
   return (
     <div className="App">
-      <h1>VCS Assistance System</h1>
+      <Notification />
     </div>
   );
 }
-
-export default App;
