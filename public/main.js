@@ -4,7 +4,7 @@ require('@electron/remote/main').initialize()
 
 function createWindow(){
     const win = new BrowserWindow({
-        width: 800,
+        width: 370,
         height: 600,
         webPreferences: {
             enableRemoteModule: true
