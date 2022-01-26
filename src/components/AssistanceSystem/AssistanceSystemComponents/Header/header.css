@@ -1,0 +1,22 @@
+.header-wrapper{
+    display:flex;
+    justify-content: center;
+}
+
+.ant-tabs > .ant-tabs-nav{
+    margin-left: 1em;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+    color: black;
+}
+
+.ant-tabs-ink-bar{
+    background: black;
+}
+
+.ant-tabs-top > .ant-tabs-nav::before{
+    right: 0px;
+    left: 0px;
+    border-bottom: 1px solid rgb(156, 156, 156);
+}

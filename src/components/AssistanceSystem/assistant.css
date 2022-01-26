@@ -1,0 +1,7 @@
+.assistant-wrapper{
+    border: solid 2px black;
+    width: 95%;
+    border-radius: 1em;
+    margin-left: 0.5em;
+    background: white;
+}

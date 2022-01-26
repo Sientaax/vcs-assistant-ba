@@ -1,0 +1,9 @@
+@import '~antd/dist/antd.css';
+
+.notification-hidden{
+    display: none;
+}
+
+.assistant-hidden{
+    display: none;
+}
