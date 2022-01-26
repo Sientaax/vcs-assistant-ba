@@ -4,7 +4,8 @@
 }
 
 .ant-tabs > .ant-tabs-nav{
-    margin-left: 1em;
+    margin-left: 0em;
+    margin-right: 0.8em;
 }
 
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
