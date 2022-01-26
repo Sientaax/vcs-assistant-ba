@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { Tabs } from 'antd';
+import { Description } from '../Description/description'
+import { History } from '../History/history'
 
 import './header.css';
 
@@ -12,10 +14,10 @@ export const Header = () => {
         <div className='header-wrapper'>
             <Tabs defaultActiveKey="1" >
                 <TabPane tab="Beschreibung" key="1">
-                    Content of Tab Pane 1
+                    <Description />
                 </TabPane>
                 <TabPane tab="Historie" key="2">
-                    Content of Tab Pane 2
+                    <History />
                 </TabPane>
             </Tabs>
         </div>
