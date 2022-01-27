@@ -16,6 +16,10 @@
     background: black;
 }
 
+.ant-tabs-tab:hover{
+    color: black;
+}
+
 .ant-tabs-top > .ant-tabs-nav::before{
     right: 0px;
     left: 0px;
