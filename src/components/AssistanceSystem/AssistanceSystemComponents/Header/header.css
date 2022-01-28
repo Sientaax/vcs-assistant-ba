@@ -1,27 +1,35 @@
-.header-wrapper{
-    display:flex;
+.ant-tabs{
+    color: white;
+}
+
+.ant-tabs-tab{
+    color: white;
+    font-size: 16px;
+}
+
+.ant-tabs-nav-wrap{
     justify-content: center;
 }
 
 .ant-tabs > .ant-tabs-nav{
     margin-left: 0em;
-    margin-right: 0.8em;
+    margin-right: 0em;
 }
 
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
-    color: black;
+    color: white;
 }
 
 .ant-tabs-ink-bar{
-    background: black;
+    background: white;
 }
 
 .ant-tabs-tab:hover{
-    color: black;
+    color: white;
 }
 
 .ant-tabs-top > .ant-tabs-nav::before{
     right: 0px;
     left: 0px;
-    border-bottom: 1px solid rgb(156, 156, 156);
+    border-bottom: 1px solid rgb(172, 172, 172);
 }

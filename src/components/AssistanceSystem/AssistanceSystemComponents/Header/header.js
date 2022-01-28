@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Tabs } from 'antd';
+import { HistoryOutlined, ReadOutlined } from '@ant-design/icons';
 import { Description } from '../Description/description'
 import { History } from '../History/history'
 
@@ -12,11 +13,17 @@ export const Header = () => {
 
     return (
         <div className='header-wrapper'>
-            <Tabs defaultActiveKey="1" >
-                <TabPane tab="Beschreibung" key="1">
+            <Tabs defaultActiveKey="1">
+                <TabPane tab={
+                    <span>
+                        <ReadOutlined /> Beschreibung
+                    </span>} key="1">
                     <Description />
                 </TabPane>
-                <TabPane tab="Historie" key="2">
+                <TabPane tab={
+                    <span>
+                        <HistoryOutlined /> Historie
+                    </span>} key="2">
                     <History />
                 </TabPane>
             </Tabs>
