@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { Tabs } from 'antd';
-import { HistoryOutlined, ReadOutlined } from '@ant-design/icons';
+import { HistoryOutlined, ReadOutlined, CloseOutlined } from '@ant-design/icons';
 import { Description } from '../Description/description'
 import { History } from '../History/history'
 
 import './header.css';
 
-export const Header = () => {
+export const Header = ({ isClosed }) => {
 
     const { TabPane } = Tabs;
 
@@ -27,6 +27,7 @@ export const Header = () => {
                     <History />
                 </TabPane>
             </Tabs>
+            <CloseOutlined onClick={() => isClosed()}/>
         </div>
     )
 }

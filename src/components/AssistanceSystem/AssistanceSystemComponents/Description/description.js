@@ -1,36 +1,72 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import './description.css';
 
 export const Description = () => {
+    const [category, setCategory] = useState('')
+    const [description, setDescription] = useState('')
+    const [radio, setRadio] = useState('feat')
+
+    let commitMessage = ''
+
+    const onChangeValue = (event) => {
+        setRadio(event.target.value)
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        buildCommitMessage()
+        setCategory('')
+        setDescription('')
+        setTimer();
+    }
+
+    const buildCommitMessage = () => {
+        commitMessage = radio + '(' + category + ')/' + description.replace(/ +/g, '-')
+        console.log(commitMessage)
+    }
+
+    const setTimer = () => {
+        document.getElementById('description-success').classList.remove('hidden')
+        let seconds = 0
+        const interval = setInterval(() => {
+            seconds += 1
+            if (seconds === 60) {
+                document.getElementById('description-success').classList.add('hidden')
+                seconds = 0
+                clearInterval(interval)
+                return
+            }
+        }, 1000)
+    }
+
     return (
         <div className='description-wrapper'>
-            <div className='description-feat-or-fix'>
-                <p>Hast du an etwas neuem gearbeitet oder etwas ausgebessert?</p>
-                <div className='description-radio'>
-                    <div className='description-radio-feat'>
-                        <input type='radio' id='feat' name='featOrFix' value='feat' />
-                        <label htmlFor='feat'>An etwas neuem</label>
-                    </div>
-                    <div className='description-radio-fix'>
-                        <input type='radio' id='fix' name='featOrFix' value='fix' />
-                        <label htmlFor='fix'>Etwas ausgebessert</label>
+            <form onSubmit={handleSubmit}>
+                <div className='description-feat-or-fix'>
+                    <p>Hast du an etwas neuem gearbeitet oder etwas ausgebessert?</p>
+                    <div className='description-radio' onChange={onChangeValue} >
+                        <div className='description-radio-feat'>
+                            <input type='radio' id='feat' name='featOrFix' required value='feat' defaultChecked />
+                            <label htmlFor='feat'>An etwas neuem</label>
+                        </div>
+                        <div className='description-radio-fix'>
+                            <input type='radio' id='fix' name='featOrFix' required value='fix' />
+                            <label htmlFor='fix'>Etwas ausgebessert</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className='description-category'>
-                <p>Definiere bitte einen Überbegriff für das was du gemacht hast.</p>
-                <input type="text" id="category" name="name" required size="30" placeholder="z.B.: User Interface, Content, ..." />
-            </div>
-            <div className='description-text'>
-                <p>Beschreibe in 2, 3 oder 4 Worten was du genau gemacht hast.</p>
-                <input type="text" id="description" name="explanation" required size="30" placeholder='z.B.: spelling mistakes, ...' />
-            </div>
-            <div className='description-result'>
-                <p>Ergebnis:</p>
-                <p className='description-result-word' id='description-result-word'></p>
-            </div>
-            <button className='description-send'>Speichern</button>
+                <div className='description-category'>
+                    <p>Definiere bitte einen Überbegriff für das was du gemacht hast.</p>
+                    <input type="text" id="category" name="name" required size="30" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="z.B.: Interface, Content, ..." />
+                </div>
+                <div className='description-text'>
+                    <p>Beschreibe in 2, 3 oder 4 Worten was du genau gemacht hast.</p>
+                    <input type="text" id="description" name="explanation" required size="30" value={description} onChange={(e) => setDescription(e.target.value)} placeholder='z.B.: spelling mistakes, ...' />
+                </div>
+                <input className='description-send' type="submit" />
+                <p className='description-success hidden' id='description-success'>Eingaben wurden gespeichert!</p>
+            </form>
         </div>
     )
 }

@@ -85,7 +85,7 @@
 
 .description-radio-fix > input:checked::before {
     transform: scale(1);
-  }
+}
 
 .description-category > p{
     text-align: center;
@@ -118,7 +118,7 @@
 
 .description-text > input {
     display: block;
-    color: black;
+    color: white;
     text-align: center;
     margin: 0 auto;
     background: rgb(63, 63, 63);
@@ -134,18 +134,6 @@
     outline: none !important;
 }
 
-.description-result{
-    display: flex;
-    margin-top: 2em;
-    margin-bottom: 2em;
-    text-align: center;
-    justify-content: center;
-}
-
-.description-result-word{
-    margin-left: 0.25em;
-}
-
 .description-send{
     display: flex;
     background: rgb(63, 63, 63);
@@ -159,6 +147,7 @@
     margin: 0 auto;
     text-align: center;
     justify-content: center;
+    margin-top: 2em;
 }
 
 .description-send:hover{
@@ -168,4 +157,16 @@
 
 .description-send:active{
     transform: translate3d(0, 1px, 0);
+}
+
+.description-success{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    color: white;
+    margin-top: 0.5em;
+}
+
+.hidden{
+    display: none;
 }
