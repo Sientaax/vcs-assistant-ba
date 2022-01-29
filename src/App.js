@@ -6,8 +6,15 @@ import { Assistant } from './components/AssistanceSystem/assistant'
 export const App = () => {
 
   const isClicked = () => {
-    document.getElementById('assistant').classList.remove('assistant-hidden')
-    document.getElementById('notification').classList.add('notification-hidden')
+    if(document.getElementById('assistant').classList.contains('assistant-hidden')){
+      document.getElementById('assistant').classList.remove('assistant-hidden')
+    } else{
+      document.getElementById('assistant').classList.add('assistant-hidden')
+    }
+  }
+
+  const shutDownAssistant = () => {
+      document.getElementById('assistant').classList.add('assistant-hidden')
   }
 
   return (
@@ -16,7 +23,7 @@ export const App = () => {
         <Notification clickListener={isClicked} />
       </div>
       <div id="assistant" className='assistant-hidden'>
-        <Assistant />
+        <Assistant closeAssistant={shutDownAssistant}/>
       </div>
     </div>
   );
