@@ -63,3 +63,76 @@ p{
     margin-bottom: 2em;
     margin-right: 0.5em;
 }
+
+.conformation-modal-wrapper{
+    display: flex;
+    position: absolute;
+    z-index: 20;
+    background: rgb(63, 63, 63);;
+    width: 300px;
+    height: 160px;
+    top: 0;
+    margin-top: 8em;
+    margin-left: 1em;
+    flex-direction: column;
+    font-size: 15px;
+    border: solid 2px rgb(63, 63, 63);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 1em;
+}
+
+.conformation-modal-wrapper > p{
+    color: white;
+    text-align: center;
+    margin-top: 0.5em;
+}
+
+.conformation-modal-choices{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1em;
+}
+
+.conformation-modal-yes{
+    background: rgb(63, 63, 63);
+    border: 2px solid rgb(33, 33, 33);
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 75px;
+}
+
+.conformation-modal-yes:hover{
+    background: rgb(53, 53, 53);
+    transform: translate3d(0, -2px, 0);
+}
+
+.conformation-modal-yes:active{
+    transform: translate3d(0, 1px, 0);
+}
+
+.conformation-modal-no{
+    background: rgb(63, 63, 63);
+    border: 2px solid rgb(33, 33, 33);
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 75px;
+}
+
+.conformation-modal-no:hover{
+    background: rgb(53, 53, 53);
+    transform: translate3d(0, -2px, 0);
+}
+
+.conformation-modal-no:active{
+    transform: translate3d(0, 1px, 0);
+}
+
+.hidden{
+    display: none;
+}
