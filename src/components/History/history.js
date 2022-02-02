@@ -100,7 +100,7 @@ export const History = ({ isOpen }) => {
                     <p className='inspecting-modal-text-two'>Möchtest du wieder zu aktuellen Version wechseln oder von diesem Stand aus weiter arbeiten?</p>
                 </div>
                 <div className='inspecting-modal-choices'>
-                    <button className='inspecting-modal-yes' onClick={closeInspectingCommitModal}>Zurück zu aktuellen Version</button>
+                    <button className='inspecting-modal-yes' onClick={closeInspectingCommitModal}>Zurück zur aktuellen Version</button>
                     <button className='inspecting-modal-no' onClick={openConfirmationModalApplyCommit}>Bei dieser Version bleiben</button>
                 </div>
             </div>
