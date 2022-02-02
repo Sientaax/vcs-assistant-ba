@@ -1,0 +1,30 @@
+.systemStatus-line{
+    position: absolute;
+    bottom: 0;
+    width: 93.5%;
+    margin-bottom: 4em;
+    z-index: 100;
+}
+
+.systemStatus-wrapper{
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    color: white;
+    margin-left: 5em;
+    margin-bottom: 1.5em;
+    font-size: 16px;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
+.systemStatus-circle{
+    margin-top: 0.35em;
+    margin-right: 0.5em;
+    height: 15px;
+    width: 15px;
+    background-color: green;
+    border-radius: 50%;
+}

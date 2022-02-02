@@ -5,5 +5,21 @@
     border-radius: 1em;
     margin-left: 0.6em;
     background: rgb(63, 63, 63);
-    height: 38em;
+    height: 45em;
+}
+
+.description-hidden{
+    display: none;
+}
+
+.header-hidden{
+    display: none;
+}
+
+.popup-hidden-wrapper{
+    display: none;
+}
+
+.popup-hidden{
+    display: none;
 }

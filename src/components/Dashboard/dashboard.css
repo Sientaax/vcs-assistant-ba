@@ -1,0 +1,117 @@
+.dashboard-wrapper{
+    display: flex;
+    font-size: 15px;
+    color: white;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.dashboard-title{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.dashboard-explanation{
+    margin-top: 0.7em;
+}
+
+.dashboard-advantages{
+    margin-top: 2em;
+    margin-left: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+    font-weight: bold;
+}
+
+.dashboard-advantages-wrapper{
+    margin-top: 0.7em;
+    margin-left: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+}
+
+.dashboard-advantages-save{
+    margin-top: 0.5em;
+    display: flex;
+    flex-direction: row;
+}
+
+.dashboard-advantages-save > p{
+    margin-left: 0.5em;
+}
+
+.anticon-save{
+    padding: 0;
+    margin-bottom: 0;
+    margin-top: 0.3em;
+}
+
+.dashboard-advantages-watch{
+    margin-top: 0.5em;
+    display: flex;
+    flex-direction: row;
+}
+
+.dashboard-advantages-watch > p{
+    margin-left: 0.5em;
+}
+
+.anticon-file-search{
+    padding: 0;
+    margin-bottom: 0;
+    margin-top: 0.3em;
+}
+
+.dashboard-advantages-work{
+    margin-top: 0.5em;
+    display: flex;
+    flex-direction: row;
+}
+
+.dashboard-advantages-work > p{
+    margin-left: 0.5em;
+}
+
+.anticon-edit{
+    padding: 0;
+    margin-bottom: 0;
+    margin-top: 0.3em;
+}
+
+.dashboard-time{
+    margin-top: 2em;
+    margin-left: 1em;
+    display: flex;
+    text-align: left;
+    flex-direction: row;
+}
+
+.dashboard-time-text{
+    font-weight: bold;
+}
+
+.dashboard-time-number{
+    margin-left: 0.2em;
+}
+
+.dashboard-versions{
+    margin-top: 2em;
+    margin-left: 1em;
+    display: flex;
+    text-align: left;
+    flex-direction: row;
+}
+
+.dashboard-versions-text{
+    font-weight: bold;
+}
+
+.dashboard-versions-number{
+    margin-left: 0.2em;
+}
