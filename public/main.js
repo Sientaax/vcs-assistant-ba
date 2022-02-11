@@ -9,9 +9,9 @@ function createWindow(){
     const win = new BrowserWindow({
         width: 370,
         height: 640,
-        transparent: true,
-        frame: false,
-        skipTaskbar: true,
+        //transparent: true,
+        //frame: false,
+        //skipTaskbar: true,
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true

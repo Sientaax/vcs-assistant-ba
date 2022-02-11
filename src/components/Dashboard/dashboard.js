@@ -1,13 +1,23 @@
 import React from 'react'
 
 import { SaveOutlined, FileSearchOutlined, EditOutlined } from '@ant-design/icons';
+import { ws } from '../../App';
 
 import './dashboard.css'
 
 export const Dashboard = () => {
+
+    ws.onmessage = (evt) => {
+        console.log("Erhaltene Message: ", evt.data)
+    }
+
+    const test = () => {
+        ws.send("testMessage")
+    }
+
     return (
         <div className='dashboard-wrapper'>
-            <p className='dashboard-title'>Platzhalter</p>
+            <p className='dashboard-title' onClick={test}>Platzhalter</p>
             <p className='dashboard-explanation'>Platzhalter ist ein Assistenzsystem, dass dich in gewissen Abständen dazu auffordert deinen geschriebenen Code zu speichern.</p>
             <p className='dashboard-advantages'>Was mache ich alles möglich?</p>
             <div className='dashboard-advantages-wrapper'>
