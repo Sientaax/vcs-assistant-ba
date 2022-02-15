@@ -7,7 +7,7 @@ import { History } from '../History/history'
 
 import './header.css'
 
-export const Header = ({ openDescription }) => {
+export const Header = ({ openDescription, workingTimeCounter }) => {
 
     const { TabPane } = Tabs;
 
@@ -18,7 +18,7 @@ export const Header = ({ openDescription }) => {
                     <span>
                         <DashboardOutlined /> Dashboard
                     </span>} key="1">
-                    <Dashboard />
+                    <Dashboard countWorkingTime={workingTimeCounter}/>
                 </TabPane>
                 <TabPane tab={
                     <span>

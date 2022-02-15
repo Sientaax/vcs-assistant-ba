@@ -9,14 +9,16 @@ function createWindow(){
     const win = new BrowserWindow({
         width: 370,
         height: 640,
-        //transparent: true,
-        //frame: false,
-        //skipTaskbar: true,
+        // frame: false,
+        // autoHideMenuBar: true,
+        // skipTaskbar: true,
+        // transparent: true,
+        // alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true
         }
-    })
+    });
 
     win.loadURL(
         isDev ? 'http://localhost:3000'

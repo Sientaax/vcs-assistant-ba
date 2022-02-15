@@ -1,24 +1,15 @@
 import React from 'react'
 
 import { SaveOutlined, FileSearchOutlined, EditOutlined } from '@ant-design/icons';
-import { ws } from '../../App';
 
 import './dashboard.css'
 
-export const Dashboard = () => {
-
-    ws.onmessage = (evt) => {
-        console.log("Erhaltene Message: ", evt.data)
-    }
-
-    const test = () => {
-        ws.send("testMessage")
-    }
+export const Dashboard = ({ countWorkingTime }) => {
 
     return (
         <div className='dashboard-wrapper'>
-            <p className='dashboard-title' onClick={test}>Platzhalter</p>
-            <p className='dashboard-explanation'>Platzhalter ist ein Assistenzsystem, dass dich in gewissen Abständen dazu auffordert deinen geschriebenen Code zu speichern.</p>
+            <p className='dashboard-title'>Version Buddy</p>
+            <p className='dashboard-explanation'>Version Buddy ist ein Assistenzsystem, dass dich in gewissen Abständen dazu auffordert deinen geschriebenen Code zu speichern.</p>
             <p className='dashboard-advantages'>Was mache ich alles möglich?</p>
             <div className='dashboard-advantages-wrapper'>
                 <div className='dashboard-advantages-save'>
@@ -36,7 +27,7 @@ export const Dashboard = () => {
             </div>
             <div className='dashboard-time'>
                 <p className='dashboard-time-text'>Bisherige Arbeitszeit:</p>
-                <p className='dashboard-time-number'>00:00:15</p>
+                <p className='dashboard-time-number'>{countWorkingTime} Minute(n)</p>
             </div>
             <div className='dashboard-versions'>
                 <p className='dashboard-versions-text'>Anzahl der gespeicherten Versionen:</p>

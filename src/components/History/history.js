@@ -3,10 +3,12 @@ import React from 'react'
 import { PlusCircleOutlined } from '@ant-design/icons';
 
 import './history.css'
+import jsonTest from './jsonTest.json'
 
 export const History = ({ isOpen }) => {
-    const openConfirmationModalLoadCommit = ({ addDescription }) => {
+    const openConfirmationModalLoadCommit = (message) => {
         document.getElementById('conformation-modal-wrapper').classList.remove('hidden')
+        console.log("Message: ", message)
     }
 
     const closeConfirmationModalLoadCommit = () => {
@@ -41,54 +43,25 @@ export const History = ({ isOpen }) => {
         // Von der geladenen Version weiter arbeiten lassen
     }
 
+    const children = jsonTest.log.map((item, i) => (
+
+        <div className='history-content-wrapper' key={i}>
+            <div className='history-information'>
+                <p>{item.date.replace(/[0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}/, '').replace(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\b/, '').replace(/CET/, '')}</p>
+                <button className='history-load-branch-button' onClick={() => openConfirmationModalLoadCommit(item.message)}>Diese Version laden</button>
+            </div>
+            <p className='history-commit'>{item.message}</p>
+        </div>
+
+    ))
+
     return (
         <>
-            <div className='history-wrapper'>
-                <div className='history-content-wrapper'>
-                    <div className='history-information'>
-                        <p>17.05.2000</p>
-                        <button className='history-load-branch-button' onClick={openConfirmationModalLoadCommit}>Diese Version laden</button>
-                    </div>
-                    <p className='history-commit'>feat(userInterface)/implemented-the-interface</p>
-                </div>
-                <div className='history-content-wrapper'>
-                    <div className='history-information'>
-                        <p>20.05.2000</p>
-                        <button className='history-load-branch-button' onClick={openConfirmationModalLoadCommit}>Diese Version laden</button>
-                    </div>
-                    <p className='history-commit'>feat(content)/setup</p>
-                </div>
-                <div className='history-content-wrapper'>
-                    <div className='history-information'>
-                        <p>25.05.2000</p>
-                        <button className='history-load-branch-button' onClick={openConfirmationModalLoadCommit}>Diese Version laden</button>
-                    </div>
-                    <p className='history-commit'>fix(content)/spelling</p>
-                </div>
-                <div className='history-content-wrapper'>
-                    <div className='history-information'>
-                        <p>25.05.2000</p>
-                        <button className='history-load-branch-button' onClick={openConfirmationModalLoadCommit}>Diese Version laden</button>
-                    </div>
-                    <p className='history-commit'>fix(content)/spelling</p>
-                </div>
-                <div className='history-content-wrapper'>
-                    <div className='history-information'>
-                        <p>25.05.2000</p>
-                        <button className='history-load-branch-button' onClick={openConfirmationModalLoadCommit}>Diese Version laden</button>
-                    </div>
-                    <p className='history-commit'>fix(content)/spelling</p>
-                </div>
-                <div className='history-content-wrapper'>
-                    <div className='history-information'>
-                        <p>25.05.2000</p>
-                        <button className='history-load-branch-button' onClick={openConfirmationModalLoadCommit}>Diese Version laden</button>
-                    </div>
-                    <p className='history-commit'>fix(content)/spelling</p>
-                </div>
+            <div className='history-wrapper' id='history-wrapper'>
+                {children}
             </div>
             <div className='confirmation-modal-wrapper hidden' id='conformation-modal-wrapper'>
-                <p>Wollen sie folgende Version, ("Platzhalter") vom (Platzhalter), sicher in die Entwicklungsumgebung laden?</p>
+                <p>Wollen sie die Version Platzhalter sicher in die Entwicklungsumgebung laden?</p>
                 <div className='confirmation-modal-choices'>
                     <button className='confirmation-modal-yes' onClick={openInspectingCommitModal}>Ja</button>
                     <button className='confirmation-modal-no' onClick={closeConfirmationModalLoadCommit}>Nein</button>
@@ -96,7 +69,7 @@ export const History = ({ isOpen }) => {
             </div>
             <div className='inspecting-modal-wrapper hidden' id='inspecting-modal-wrapper'>
                 <div className='inspecting-modal-text'>
-                    <p className='inspecting-modal-text-one'>Aktuell ist die Version (Platzhalter) vom (Platzhalter) in der Entwicklungsumgebung geladen.</p>
+                    <p className='inspecting-modal-text-one'>Aktuell ist die Version Platzhalter in der Entwicklungsumgebung geladen.</p>
                     <p className='inspecting-modal-text-two'>Möchtest du wieder zu aktuellen Version wechseln oder von diesem Stand aus weiter arbeiten?</p>
                 </div>
                 <div className='inspecting-modal-choices'>

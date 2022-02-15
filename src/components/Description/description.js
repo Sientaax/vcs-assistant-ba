@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import { CloseOutlined } from '@ant-design/icons';
+import { ws } from '../../App';
 
 import './description.css';
 
@@ -8,7 +9,7 @@ export const Description = ({ closeDescription }) => {
     const [category, setCategory] = useState('')
     const [description, setDescription] = useState('')
     const [radio, setRadio] = useState('feat')
-
+    
     let commitMessage = ''
 
     const onChangeValue = (event) => {
@@ -23,8 +24,19 @@ export const Description = ({ closeDescription }) => {
     }
 
     const buildCommitMessage = () => {
-        commitMessage = radio + '(' + category + ')/' + description.replace(/ +/g, '-')
-        console.log(commitMessage)
+        if(category === '' && description === ''){
+            return;
+        } else if(category !== '' && description === ''){
+            return;
+        } else if(category === '' && description !== ''){
+            return;
+        } else {
+            commitMessage = radio + '(' + category + ')/' + description.replace(/ +/g, '-')
+            ws.send(JSON.stringify({
+                id: "commitMessage",
+                data: commitMessage,
+            }))
+        }
     }
 
     return (
@@ -47,11 +59,11 @@ export const Description = ({ closeDescription }) => {
                     </div>
                     <div className='description-category'>
                         <p>Definiere bitte einen Überbegriff für das was du gemacht hast.</p>
-                        <input type="text" id="category" name="name" required size="30" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="z.B.: Interface, Content, ..." />
+                        <input type="text" id="category" name="name" size="30" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="z.B.: Interface, Content, ..." />
                     </div>
                     <div className='description-text'>
                         <p>Beschreibe in 2, 3 oder 4 Worten was du genau gemacht hast.</p>
-                        <input type="text" id="description" name="explanation" required size="30" value={description} onChange={(e) => setDescription(e.target.value)} placeholder='z.B.: spelling mistakes, ...' />
+                        <input type="text" id="description" name="explanation" size="30" value={description} onChange={(e) => setDescription(e.target.value)} placeholder='z.B.: spelling mistakes, ...' />
                     </div>
                     <input className='description-send' type="submit" onClick={() => closeDescription()} />
                 </form>

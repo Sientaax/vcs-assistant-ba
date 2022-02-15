@@ -37,7 +37,7 @@
 }
 
 .dashboard-advantages-save{
-    margin-top: 0.5em;
+    margin-top: 0em;
     display: flex;
     flex-direction: row;
 }
@@ -53,7 +53,7 @@
 }
 
 .dashboard-advantages-watch{
-    margin-top: 0.5em;
+    margin-top: 0em;
     display: flex;
     flex-direction: row;
 }
@@ -69,7 +69,7 @@
 }
 
 .dashboard-advantages-work{
-    margin-top: 0.5em;
+    margin-top: 0em;
     display: flex;
     flex-direction: row;
 }
@@ -85,7 +85,7 @@
 }
 
 .dashboard-time{
-    margin-top: 2em;
+    margin-top: 1em;
     margin-left: 1em;
     display: flex;
     text-align: left;
@@ -101,7 +101,7 @@
 }
 
 .dashboard-versions{
-    margin-top: 2em;
+    margin-top: 1em;
     margin-left: 1em;
     display: flex;
     text-align: left;
