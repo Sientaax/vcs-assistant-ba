@@ -89,7 +89,7 @@ export const History = ({ isOpen }) => {
             <div className='inspecting-modal-wrapper hidden' id='inspecting-modal-wrapper'>
                 <div className='inspecting-modal-text'>
                     <p className='inspecting-modal-text-one'>Aktuell ist die Version "{specificMessage}" in der Entwicklungsumgebung geladen.</p>
-                    <p className='inspecting-modal-text-two'>Möchtest du wieder zu der letzt gespiecherten Version wechseln oder von diesem Stand aus weiter arbeiten?</p>
+                    <p className='inspecting-modal-text-two'>Möchtest du wieder zu der letzt gespeicherten Version wechseln oder von diesem Stand aus weiter arbeiten?</p>
                 </div>
                 <div className='inspecting-modal-choices'>
                     <button className='inspecting-modal-yes' onClick={closeInspectingCommitModal}>Zurück zur letzt gespeicherten Version</button>

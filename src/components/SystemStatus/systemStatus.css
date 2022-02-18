@@ -1,7 +1,7 @@
 .systemStatus-line{
     position: absolute;
     bottom: 0;
-    width: 97%;
+    width: 99%;
     margin-bottom: 4em;
     z-index: 100;
 }
@@ -16,6 +16,7 @@
     font-size: 16px;
     justify-content: center;
     text-align: center;
+    -webkit-app-region: drag;
 }
 
 .systemStatus-circle-green{

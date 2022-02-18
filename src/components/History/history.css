@@ -8,6 +8,7 @@
 
 .ant-empty-image{
     margin-top: 2em;
+    -webkit-app-region: drag;
 }
 
 .history-wrapper::-webkit-scrollbar{
@@ -38,6 +39,10 @@
     justify-content: space-between;
 }
 
+.history-information > p{
+    -webkit-app-region: drag;
+}
+
 .history-load-branch-button{
     margin-right: 0.5em;
     margin-bottom: 0.5em;
@@ -66,6 +71,7 @@ p{
 .history-commit{
     margin-bottom: 2em;
     margin-right: 0.5em;
+    -webkit-app-region: drag;
 }
 
 .confirmation-modal-wrapper{
@@ -74,7 +80,7 @@ p{
     z-index: 20;
     background: rgb(63, 63, 63);;
     width: 300px;
-    height: 210px;
+    height: 230px;
     top: 0;
     margin-top: 6em;
     margin-left: 1.8em;
@@ -165,7 +171,7 @@ p{
     position: absolute;
     z-index: 20;
     background: rgb(63, 63, 63, 0.96);
-    width: 330px;
+    width: 370px;
     height: 590px;
     top: 0;
     flex-direction: column;
@@ -241,8 +247,8 @@ p{
 .anticon-plus-circle{
     font-size: 50px;
     z-index: 5;
-    margin-left: 5em;
-    margin-top: 0.3em;
+    margin-left: 5.3em;
+    margin-top: 0.5em;
     cursor: pointer;
     transition: all 0.2s ease;
 }
