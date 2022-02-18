@@ -45,7 +45,7 @@ export const Assistant = () => {
         setAssistantActive(false)
     }
 
-    // Rechnung: 1 Minute = 11; 2 Minuten = 23; 3 Minuten = 35; (15 Minuten aktuell)
+    // Rechnung: 1 Minute = 11; 2 Minuten = 23; 3 Minuten = 35; ...
     // TODO createNewFile und deleteAFile in plugin implementieren
     // Assistenten starten
 
@@ -58,7 +58,8 @@ export const Assistant = () => {
                 setGetWorkingTimeCounter(getWorkingTimeCounter + 1)
             }
             setShowCommitPannel(showCommitPannel + 1)
-            if (showCommitPannel === 179) {
+            // 20 Minutes
+            if (showCommitPannel === 239) {
                 setShowCommitPannel(0)
                 setPopupCause('3 Minuten sind vorbei')
                 document.getElementById('header-hidden').classList.add('header-hidden')
