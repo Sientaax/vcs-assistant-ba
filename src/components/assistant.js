@@ -45,7 +45,7 @@ export const Assistant = () => {
         setAssistantActive(false)
     }
 
-    // Rechnung: 1 Minute = 11; 2 Minuten = 23; 3 Minuten = 35; 47 59 71 83 95 107 119 131 143 155 167 179 ...
+    // Rechnung: 1 Minute = 11; 2 Minuten = 23; 3 Minuten = 35; (15 Minuten aktuell)
     // TODO createNewFile und deleteAFile in plugin implementieren
     // Assistenten starten
 
