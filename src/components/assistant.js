@@ -8,11 +8,15 @@ import { Description } from './Description/description'
 import { Popup } from './Popup/popup'
 import { ws } from '../App';
 
+export let parsedData = '';
+
 export const Assistant = () => {
     const [popupCause, setPopupCause] = useState("");
     const [assistantActive, setAssistantActive] = useState(false)
     const [getWorkingTimeCounter, setGetWorkingTimeCounter] = useState(0)
+    const [workingTimeCounter, setWorkingTimeCounter] = useState(0)
     const [showCommitPannel, setShowCommitPannel] = useState(0)
+    const [getLogCounter, setGetLogCounter] = useState("0")
 
     const isClicked = () => {
         document.getElementById('description-hidden').classList.remove('description-hidden')
@@ -41,17 +45,26 @@ export const Assistant = () => {
         setAssistantActive(false)
     }
 
+    // Rechnung: 1 Minute = 11; 2 Minuten = 23; 3 Minuten = 34; ...
+    // TODO createNewFile und deleteAFile in plugin implementieren
+    // TODO Branch laden implementieren
+    // Assistenten starten
+
     ws.onmessage = (evt) => {
         let parsedJson = JSON.parse(evt.data)
         if (parsedJson.countWorkingTime) {
-            setGetWorkingTimeCounter(getWorkingTimeCounter + 1)
+            setWorkingTimeCounter(workingTimeCounter + 1)
+            if(workingTimeCounter === 11){
+                setWorkingTimeCounter(0)
+                setGetWorkingTimeCounter(getWorkingTimeCounter + 1)
+            }
             setShowCommitPannel(showCommitPannel + 1)
-            if (showCommitPannel === 1) {
-                setPopupCause('2 Minuten sind vorbei')
+            if (showCommitPannel === 35) {
+                setShowCommitPannel(0)
+                setPopupCause('3 Minuten sind vorbei')
                 document.getElementById('header-hidden').classList.add('header-hidden')
                 document.getElementById('popup-hidden-wrapper').classList.remove('popup-hidden-wrapper')
                 document.getElementById('popup-hidden').classList.remove('popup-hidden')
-                setShowCommitPannel(0)
             }
         } else if(parsedJson.createNewFile){
                 setPopupCause('Ein neue Datei wurde hinzugefügt')
@@ -64,14 +77,17 @@ export const Assistant = () => {
             document.getElementById('popup-hidden-wrapper').classList.remove('popup-hidden-wrapper')
             document.getElementById('popup-hidden').classList.remove('popup-hidden')
         } else if(parsedJson.log){
-            console.log("Data: ", evt.data)
+            parsedData = JSON.parse(evt.data);
+            console.log("Parsed Data: ", parsedData)
+        } else if(parsedJson.logCounter){
+            setGetLogCounter(parsedJson.logCounter)
         }
     }
 
     return (
         <div className='assistant-wrapper' id='assistant-wrapper'>
             <div className='' id='header-hidden'>
-                <Header openDescription={isClicked} workingTimeCounter={getWorkingTimeCounter}/>
+                <Header openDescription={isClicked} workingTimeCounter={getWorkingTimeCounter} setLogCounter={getLogCounter} />
             </div>
             <SystemStatus isAssistantActive={assistantActive}/>
             <div className='description-hidden' id='description-hidden'>

@@ -4,7 +4,7 @@ import { SaveOutlined, FileSearchOutlined, EditOutlined } from '@ant-design/icon
 
 import './dashboard.css'
 
-export const Dashboard = ({ countWorkingTime }) => {
+export const Dashboard = ({ countWorkingTime, logCounter }) => {
 
     return (
         <div className='dashboard-wrapper'>
@@ -31,7 +31,7 @@ export const Dashboard = ({ countWorkingTime }) => {
             </div>
             <div className='dashboard-versions'>
                 <p className='dashboard-versions-text'>Anzahl der gespeicherten Versionen:</p>
-                <p className='dashboard-versions-number'>10</p>
+                <p className='dashboard-versions-number'>{logCounter}</p>
             </div>
         </div>
     )
