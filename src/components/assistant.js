@@ -46,8 +46,6 @@ export const Assistant = () => {
     }
 
     // Rechnung: 1 Minute = 11; 2 Minuten = 23; 3 Minuten = 35; ...
-    // TODO createNewFile und deleteAFile in plugin implementieren
-    // Assistenten starten
 
     ws.onmessage = (evt) => {
         let parsedJson = JSON.parse(evt.data)
