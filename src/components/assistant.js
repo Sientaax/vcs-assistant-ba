@@ -59,7 +59,7 @@ export const Assistant = () => {
             // 20 Minutes
             if (showCommitPannel === 239) {
                 setShowCommitPannel(0)
-                setPopupCause('3 Minuten sind vorbei')
+                setPopupCause('20 Minuten sind vorbei')
                 document.getElementById('header-hidden').classList.add('header-hidden')
                 document.getElementById('popup-hidden-wrapper').classList.remove('popup-hidden-wrapper')
                 document.getElementById('popup-hidden').classList.remove('popup-hidden')
