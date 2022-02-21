@@ -193,6 +193,10 @@ p{
     margin-top: 2em;
 }
 
+.inspecting-modal-text-three{
+    font-weight: bolder;
+}
+
 .inspecting-modal-choices{
     display: flex;
     flex-direction: row;

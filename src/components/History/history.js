@@ -11,10 +11,12 @@ export const History = ({ isOpen }) => {
     let children;
 
     const [specificMessage, setSpecificMessage] = useState('')
+    const [lastItem, setLastItem] = useState('')
 
     const openConfirmationModalLoadCommit = (message) => {
         document.getElementById('conformation-modal-wrapper').classList.remove('hidden')
         setSpecificMessage(message)
+        setLastItem(parsedData.log[0].message)
     }
 
     const closeConfirmationModalLoadCommit = () => {
@@ -34,7 +36,7 @@ export const History = ({ isOpen }) => {
         document.getElementById('inspecting-modal-wrapper').classList.add('hidden')
         ws.send(JSON.stringify({
             id: "loadBranchMaster",
-            data: "master",
+            data: lastItem,
         }))
     }
 
@@ -47,7 +49,7 @@ export const History = ({ isOpen }) => {
         document.getElementById('inspecting-modal-wrapper').classList.add('hidden')
         ws.send(JSON.stringify({
             id: "loadBranchMaster",
-            data: "master",
+            data: lastItem,
         }))
     }
 
@@ -89,6 +91,7 @@ export const History = ({ isOpen }) => {
             <div className='inspecting-modal-wrapper hidden' id='inspecting-modal-wrapper'>
                 <div className='inspecting-modal-text'>
                     <p className='inspecting-modal-text-one'>Aktuell ist die Version "{specificMessage}" in der Entwicklungsumgebung geladen.</p>
+                    <p className='inspecting-modal-text-three'>Bitte verändere keinen Code, solange dieses Overlay zu sehen ist.</p>
                     <p className='inspecting-modal-text-two'>Möchtest du wieder zu der letzt gespeicherten Version wechseln oder von diesem Stand aus weiter arbeiten?</p>
                 </div>
                 <div className='inspecting-modal-choices'>
