@@ -7,6 +7,7 @@ import { SystemStatus } from './SystemStatus/systemStatus'
 import { Description } from './Description/description'
 import { Popup } from './Popup/popup'
 import { ws } from '../App';
+import { BranchExists } from './BranchExists/branchExists';
 
 export let parsedData = '';
 
@@ -35,6 +36,14 @@ export const Assistant = () => {
     const shutDownPopupDescription = () => {
         document.getElementById('popup-hidden-wrapper').classList.add('popup-hidden-wrapper')
         document.getElementById('header-hidden').classList.remove('header-hidden')
+    }
+
+    const shutDownBranchExists = () => {
+        document.getElementById("branch-exists-hidden").classList.add("branch-exists-hidden")
+        ws.send(JSON.stringify({
+            id: "branchExistsClicked",
+            data: "branchExistsClicked",
+        }))
     }
 
     ws.onopen = () => {
@@ -78,6 +87,8 @@ export const Assistant = () => {
             parsedData = JSON.parse(evt.data);
         } else if(parsedJson.logCounter){
             setGetLogCounter(parsedJson.logCounter)
+        } else if(parsedJson.branchExists){
+            document.getElementById("branch-exists-hidden").classList.remove("branch-exists-hidden")
         }
     }
 
@@ -85,6 +96,9 @@ export const Assistant = () => {
         <div className='assistant-wrapper' id='assistant-wrapper'>
             <div className='' id='header-hidden'>
                 <Header openDescription={isClicked} workingTimeCounter={getWorkingTimeCounter} setLogCounter={getLogCounter} />
+            </div>
+            <div className='branch-exists-hidden' id='branch-exists-hidden'>
+                <BranchExists closebranchExists={shutDownBranchExists} />
             </div>
             <SystemStatus isAssistantActive={assistantActive}/>
             <div className='description-hidden' id='description-hidden'>

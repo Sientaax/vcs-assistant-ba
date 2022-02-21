@@ -19,3 +19,7 @@
 .popup-hidden{
     display: none;
 }
+
+.branch-exists-hidden{
+    display: none;
+}

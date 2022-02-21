@@ -1,0 +1,50 @@
+.branchExists-wrapper{
+    display: flex;
+    text-align: center; 
+    color: white; 
+    position: absolute;
+    z-index: 60;
+    background: rgb(63, 63, 63);;
+    width: 300px;
+    height: 180px;
+    top: 0;
+    margin-top: 8em;
+    margin-left: 2em;
+    flex-direction: column;
+    font-size: 15px;
+    border: solid 2px rgb(63, 63, 63);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 1em;
+}
+
+.branchExists-placeholder{
+    font-weight: bold;
+    margin-top: 0.5em;
+}
+
+.branchExists-explanation{
+    margin-top: 1em;
+    text-align: center;
+}
+
+.branchExists-confirmation-modal-yes{
+    background: rgb(63, 63, 63);
+    border: 2px solid rgb(33, 33, 33);
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 75px;
+    margin: 0 auto;
+    margin-top: 1em;
+}
+
+.branchExists-confirmation-modal-yes:hover{
+    background: rgb(53, 53, 53);
+    transform: translate3d(0, -2px, 0);
+}
+
+.branchExists-confirmation-modal-yes:active{
+    transform: translate3d(0, 1px, 0);
+}
