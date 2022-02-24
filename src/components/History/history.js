@@ -11,11 +11,13 @@ export const History = ({ isOpen }) => {
     let children;
 
     const [specificMessage, setSpecificMessage] = useState('')
+    const [correctMessage, setCorrectMessage] = useState('')
     const [lastItem, setLastItem] = useState('')
 
-    const openConfirmationModalLoadCommit = (message) => {
+    const openConfirmationModalLoadCommit = (exactMessage) => {
         document.getElementById('conformation-modal-wrapper').classList.remove('hidden')
-        setSpecificMessage(message)
+        setSpecificMessage(exactMessage)
+        setCorrectMessage(exactMessage.replace(/\(/, ': ').replaceAll('-', ' '))
         setLastItem(parsedData.log[0].message)
     }
 
@@ -62,7 +64,7 @@ export const History = ({ isOpen }) => {
         }))
     }
 
-    if (parsedData === "") {
+    if (parsedData === "" || parsedData.log.length === 0) {
         children = <Empty description={"Bisher wurden keine Versionen gespeichert"} />
     } else {
         children = parsedData.log.map((item, i) => (
@@ -71,7 +73,7 @@ export const History = ({ isOpen }) => {
                     <p>{item.date.replace(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\b/, '').replace(/CET/, '').replace(/\b\d{4}\b/, '')}</p>
                     <button className='history-load-branch-button' onClick={() => openConfirmationModalLoadCommit(item.message)}>Diese Version laden</button>
                 </div>
-                <p className='history-commit'>{item.message}</p>
+                <p className='history-commit'>{item.message.replace(/\(/, ': ').replaceAll('-', ' ')}</p>
             </div>
         ))
     }
@@ -82,7 +84,7 @@ export const History = ({ isOpen }) => {
                 {children}
             </div>
             <div className='confirmation-modal-wrapper hidden' id='conformation-modal-wrapper'>
-                <p>Willst du die Version "{specificMessage}" sicher in IntelliJ laden? Falls du seit dem letztem speichern Änderungen vorgenommen hast und diese noch nicht gespeichert wurden, wären diese Änderungen weg.</p>
+                <p>Willst du die Version "{correctMessage}" sicher in IntelliJ laden? Falls du seit dem letztem speichern Änderungen vorgenommen hast und diese noch nicht gespeichert wurden, wären diese Änderungen weg.</p>
                 <div className='confirmation-modal-choices'>
                     <button className='confirmation-modal-yes' onClick={openInspectingCommitModal}>Ja</button>
                     <button className='confirmation-modal-no' onClick={closeConfirmationModalLoadCommit}>Nein</button>
@@ -90,7 +92,7 @@ export const History = ({ isOpen }) => {
             </div>
             <div className='inspecting-modal-wrapper hidden' id='inspecting-modal-wrapper'>
                 <div className='inspecting-modal-text'>
-                    <p className='inspecting-modal-text-one'>Aktuell ist die Version "{specificMessage}" in IntelliJ geladen.</p>
+                    <p className='inspecting-modal-text-one'>Aktuell ist die Version "{correctMessage}" in IntelliJ geladen.</p>
                     <p className='inspecting-modal-text-three'>Bitte verändere keinen Code, solange dieses Overlay zu sehen ist!</p>
                     <p className='inspecting-modal-text-four'>Klicke bitte einmal auf deinen Code, so dass sich dieser aktualisiert.</p>
                     <p className='inspecting-modal-text-two'>Möchtest du wieder zu der letzt gespeicherten Version wechseln oder beginnend von dieser Version ({specificMessage}) erneut arbeiten?</p>
