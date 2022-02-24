@@ -4,6 +4,12 @@
     height: 45.7em;
 }
 
+.taskbar{
+    background: rgb(43, 43, 43);
+    height: 20px;
+    -webkit-app-region: drag;
+}
+
 .description-hidden{
     display: none;
 }

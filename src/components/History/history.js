@@ -68,7 +68,7 @@ export const History = ({ isOpen }) => {
         children = parsedData.log.map((item, i) => (
             <div className='history-content-wrapper' key={i}>
                 <div className='history-information'>
-                    <p>{item.date.replace(/[0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}/, '').replace(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\b/, '').replace(/CET/, '')}</p>
+                    <p>{item.date.replace(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\b/, '').replace(/CET/, '').replace(/\b\d{4}\b/, '')}</p>
                     <button className='history-load-branch-button' onClick={() => openConfirmationModalLoadCommit(item.message)}>Diese Version laden</button>
                 </div>
                 <p className='history-commit'>{item.message}</p>
@@ -82,7 +82,7 @@ export const History = ({ isOpen }) => {
                 {children}
             </div>
             <div className='confirmation-modal-wrapper hidden' id='conformation-modal-wrapper'>
-                <p>Willst du die Version "{specificMessage}" sicher in die Entwicklungsumgebung laden? Falls du seit dem letztem speichern Änderungen vorgenommen hast und diese noch nicht gespeichert wurden, wären diese Änderungen weg.</p>
+                <p>Willst du die Version "{specificMessage}" sicher in IntelliJ laden? Falls du seit dem letztem speichern Änderungen vorgenommen hast und diese noch nicht gespeichert wurden, wären diese Änderungen weg.</p>
                 <div className='confirmation-modal-choices'>
                     <button className='confirmation-modal-yes' onClick={openInspectingCommitModal}>Ja</button>
                     <button className='confirmation-modal-no' onClick={closeConfirmationModalLoadCommit}>Nein</button>
@@ -90,9 +90,10 @@ export const History = ({ isOpen }) => {
             </div>
             <div className='inspecting-modal-wrapper hidden' id='inspecting-modal-wrapper'>
                 <div className='inspecting-modal-text'>
-                    <p className='inspecting-modal-text-one'>Aktuell ist die Version "{specificMessage}" in der Entwicklungsumgebung geladen.</p>
-                    <p className='inspecting-modal-text-three'>Bitte verändere keinen Code, solange dieses Overlay zu sehen ist.</p>
-                    <p className='inspecting-modal-text-two'>Möchtest du wieder zu der letzt gespeicherten Version wechseln oder von diesem Stand aus weiter arbeiten?</p>
+                    <p className='inspecting-modal-text-one'>Aktuell ist die Version "{specificMessage}" in IntelliJ geladen.</p>
+                    <p className='inspecting-modal-text-three'>Bitte verändere keinen Code, solange dieses Overlay zu sehen ist!</p>
+                    <p className='inspecting-modal-text-four'>Klicke bitte einmal auf deinen Code, so dass sich dieser aktualisiert.</p>
+                    <p className='inspecting-modal-text-two'>Möchtest du wieder zu der letzt gespeicherten Version wechseln oder beginnend von dieser Version ({specificMessage}) erneut arbeiten?</p>
                 </div>
                 <div className='inspecting-modal-choices'>
                     <button className='inspecting-modal-yes' onClick={closeInspectingCommitModal}>Zurück zur letzt gespeicherten Version</button>
@@ -100,7 +101,7 @@ export const History = ({ isOpen }) => {
                 </div>
             </div>
             <div className='confirmation-modal-wrapper-appy-commit hidden' id='confirmation-modal-appy-commit-wrapper'>
-                <p>Bist du dir sicher, dass du von dieser Version, die aktuell in der Entwicklungsumgebung geladen ist, weiter arbeiten möchtest? Es ist dann nicht mehr möglich zu einer, von diesem Standpunkt aus später gespeicherten Versionen, zurückzukehren.</p>
+                <p>Bist du dir sicher, dass du von der Version, die aktuell in der Entwicklungsumgebung geladen ist, weiter arbeiten möchtest? Es ist dann nicht mehr möglich zu einer, von diesem Standpunkt aus gesehen später gespeicherten Versionen, zurückzukehren.</p>
                 <div className='confirmation-modal-choices'>
                     <button className='confirmation-modal-yes' onClick={appyLoadedCommit}>Ja</button>
                     <button className='confirmation-modal-no' onClick={closeConfirmationModalApplyCommit}>Nein</button>

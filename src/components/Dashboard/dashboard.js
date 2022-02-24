@@ -9,7 +9,7 @@ export const Dashboard = ({ countWorkingTime, logCounter }) => {
     return (
         <div className='dashboard-wrapper'>
             <p className='dashboard-title'>Version Buddy</p>
-            <p className='dashboard-explanation'>Version Buddy ist ein Assistenzsystem, dass dich in gewissen Abständen dazu auffordert deinen geschriebenen Code zu speichern.</p>
+            <p className='dashboard-explanation'>Version Buddy ist ein Assistenzsystem, dass dich in gewissen Abständen dazu auffordert, deinen geschriebenen Code zu dokumentieren.</p>
             <p className='dashboard-advantages'>Was mache ich alles möglich?</p>
             <div className='dashboard-advantages-wrapper'>
                 <div className='dashboard-advantages-save'>
@@ -22,7 +22,7 @@ export const Dashboard = ({ countWorkingTime, logCounter }) => {
                 </div>
                 <div className='dashboard-advantages-work'>
                     <EditOutlined />
-                    <p>Erneutes Arbeiten von dem Stand einer älteren Version</p>
+                    <p>Erneutes Arbeiten von dem Stand einer älteren Version aus</p>
                 </div>
             </div>
             <div className='dashboard-time'>

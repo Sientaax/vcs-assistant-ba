@@ -23,7 +23,7 @@
 }
 
 .popup-explanation{
-    margin-top: 1em;
+    margin-top: 0em;
     text-align: center;
 }
 
@@ -37,7 +37,7 @@
     transition: all 0.2s ease;
     width: 75px;
     margin: 0 auto;
-    margin-top: 1em;
+    margin-top: 0.5em;
 }
 
 .pop-up-confirmation-modal-yes:hover{

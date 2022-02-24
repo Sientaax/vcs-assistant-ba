@@ -18,6 +18,7 @@ export const Assistant = () => {
     const [workingTimeCounter, setWorkingTimeCounter] = useState(0)
     const [showCommitPannel, setShowCommitPannel] = useState(0)
     const [getLogCounter, setGetLogCounter] = useState("0")
+    const [popupExplanation, setPopupExplanation] = useState("")
 
     const isClicked = () => {
         document.getElementById('description-hidden').classList.remove('description-hidden')
@@ -60,53 +61,58 @@ export const Assistant = () => {
         let parsedJson = JSON.parse(evt.data)
         if (parsedJson.countWorkingTime) {
             setWorkingTimeCounter(workingTimeCounter + 1)
-            if(workingTimeCounter === 11){
+            if (workingTimeCounter === 11) {
                 setWorkingTimeCounter(0)
                 setGetWorkingTimeCounter(getWorkingTimeCounter + 1)
             }
             setShowCommitPannel(showCommitPannel + 1)
             // 20 Minutes
-            if (showCommitPannel === 239) {
+            //if (showCommitPannel === 239) {
+            if (showCommitPannel === 35){
                 setShowCommitPannel(0)
                 setPopupCause('20 Minuten sind vorbei')
+                setPopupExplanation('Bitte beschreibe kurz, was du alles in der letzten Zeit gemacht hast')
                 document.getElementById('header-hidden').classList.add('header-hidden')
                 document.getElementById('popup-hidden-wrapper').classList.remove('popup-hidden-wrapper')
                 document.getElementById('popup-hidden').classList.remove('popup-hidden')
             }
-        } else if(parsedJson.createNewFile){
-                setPopupCause('Eine neue Datei wurde hinzugefügt')
-                document.getElementById('header-hidden').classList.add('header-hidden')
-                document.getElementById('popup-hidden-wrapper').classList.remove('popup-hidden-wrapper')
-                document.getElementById('popup-hidden').classList.remove('popup-hidden')
-        } else if(parsedJson.deleteAFile){
-            setPopupCause('Eine Datei wurde gelöscht')
+        } else if (parsedJson.createNewFile) {
+            setPopupCause('Eine neue Datei wurde hinzugefügt')
+            setPopupExplanation('Bitte beschreibe kurz, was du alles in der letzten Zeit gemacht hast')
             document.getElementById('header-hidden').classList.add('header-hidden')
             document.getElementById('popup-hidden-wrapper').classList.remove('popup-hidden-wrapper')
             document.getElementById('popup-hidden').classList.remove('popup-hidden')
-        } else if(parsedJson.log){
+        } else if (parsedJson.deleteAFile) {
+            setPopupCause('Eine Datei wurde gelöscht')
+            setPopupExplanation('Bitte beschreibe kurz, was du alles in der letzten Zeit gemacht hast')
+            document.getElementById('header-hidden').classList.add('header-hidden')
+            document.getElementById('popup-hidden-wrapper').classList.remove('popup-hidden-wrapper')
+            document.getElementById('popup-hidden').classList.remove('popup-hidden')
+        } else if (parsedJson.log) {
             parsedData = JSON.parse(evt.data);
-        } else if(parsedJson.logCounter){
+        } else if (parsedJson.logCounter) {
             setGetLogCounter(parsedJson.logCounter)
-        } else if(parsedJson.branchExists){
+        } else if (parsedJson.branchExists) {
             document.getElementById("branch-exists-hidden").classList.remove("branch-exists-hidden")
         }
     }
 
     return (
         <div className='assistant-wrapper' id='assistant-wrapper'>
+            <div className='taskbar'></div>
             <div className='' id='header-hidden'>
                 <Header openDescription={isClicked} workingTimeCounter={getWorkingTimeCounter} setLogCounter={getLogCounter} />
             </div>
             <div className='branch-exists-hidden' id='branch-exists-hidden'>
                 <BranchExists closebranchExists={shutDownBranchExists} />
             </div>
-            <SystemStatus isAssistantActive={assistantActive}/>
+            <SystemStatus isAssistantActive={assistantActive} />
             <div className='description-hidden' id='description-hidden'>
                 <Description closeDescription={shutDownDescription} />
             </div>
             <div className='popup-hidden-wrapper' id='popup-hidden-wrapper'>
                 <div className='popup-hidden' id='popup-hidden'>
-                    <Popup closePupup={shutDownPopup} popupReason={popupCause} />
+                    <Popup closePupup={shutDownPopup} popupReason={popupCause} popupDescription={popupExplanation} />
                 </div>
                 <Description closeDescription={shutDownPopupDescription} />
             </div>
