@@ -31,7 +31,7 @@ export const Description = ({ closeDescription }) => {
         } else if(category === '' && description !== ''){
             return;
         } else {
-            commitMessage = radio + '(' + category + '/' + description.replace(/ +/g, '-')
+            commitMessage = radio + '(' + category.replace(/ +/g, '-') + '/' + description.replace(/ +/g, '-')
             ws.send(JSON.stringify({
                 id: "commitMessage",
                 data: commitMessage,
