@@ -9,7 +9,8 @@ export const Description = ({ closeDescription }) => {
     const [category, setCategory] = useState('')
     const [description, setDescription] = useState('')
     const [radio, setRadio] = useState('feat')
-    
+    const [error, setError] = useState(false)
+
     let commitMessage = ''
 
     const onChangeValue = (event) => {
@@ -24,18 +25,20 @@ export const Description = ({ closeDescription }) => {
     }
 
     const buildCommitMessage = () => {
-        if(category === '' && description === ''){
-            return;
-        } else if(category !== '' && description === ''){
-            return;
-        } else if(category === '' && description !== ''){
-            return;
+        if (category === '' && description === '') {
+            setError(true)
+        } else if (category !== '' && description === '') {
+            setError(true)
+        } else if (category === '' && description !== '') {
+            setError(true)
         } else {
             commitMessage = radio + '(' + category.replace(/ +/g, '-') + '/' + description.replace(/ +/g, '-')
             ws.send(JSON.stringify({
                 id: "commitMessage",
                 data: commitMessage,
             }))
+            closeDescription();
+            setError(false);
         }
     }
 
@@ -62,10 +65,11 @@ export const Description = ({ closeDescription }) => {
                         <input type="text" id="category" name="name" size="30" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="z.B.: Interface, Content, ..." />
                     </div>
                     <div className='description-text'>
-                        <p>Beschreibe in 2, 3 oder 4 Worten was du genau gemacht hast.</p>
+                        <p>Beschreibe in 3, 4 oder 5 Worten, was du genau gemacht hast.</p>
                         <input type="text" id="description" name="explanation" size="30" value={description} onChange={(e) => setDescription(e.target.value)} placeholder='z.B.: spelling mistakes, ...' />
                     </div>
-                    <input className='description-send' type="submit" onClick={() => closeDescription()} />
+                    {error && <p className='description-error'>Senden fehlerhaft: Nicht alle Felder wurden ausgefüllt!</p>}
+                    <input className='description-send' type="submit" />
                 </form>
             </div>
         </>

@@ -95,7 +95,7 @@ export const History = ({ isOpen }) => {
                     <p className='inspecting-modal-text-one'>Aktuell ist die Version "{correctMessage}" in IntelliJ geladen.</p>
                     <p className='inspecting-modal-text-three'>Bitte verändere keinen Code, solange dieses Overlay zu sehen ist!</p>
                     <p className='inspecting-modal-text-four'>Klicke bitte einmal auf deinen Code, so dass sich dieser aktualisiert.</p>
-                    <p className='inspecting-modal-text-two'>Möchtest du wieder zu der letzt gespeicherten Version wechseln oder beginnend von dieser Version ({specificMessage}) erneut arbeiten?</p>
+                    <p className='inspecting-modal-text-two'>Möchtest du wieder zu der letzt gespeicherten Version wechseln oder beginnend von dieser Version "{correctMessage}" erneut arbeiten?</p>
                 </div>
                 <div className='inspecting-modal-choices'>
                     <button className='inspecting-modal-yes' onClick={closeInspectingCommitModal}>Zurück zur letzt gespeicherten Version</button>

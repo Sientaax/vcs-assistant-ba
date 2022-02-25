@@ -253,7 +253,7 @@ p{
     font-size: 50px;
     z-index: 5;
     margin-left: 5.3em;
-    margin-top: 0.5em;
+    margin-top: 0.25em;
     cursor: pointer;
     transition: all 0.2s ease;
 }
