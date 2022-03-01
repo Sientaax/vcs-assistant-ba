@@ -62,11 +62,11 @@ export const Description = ({ closeDescription }) => {
                     </div>
                     <div className='description-category'>
                         <p>Definiere bitte einen Überbegriff für das was du gemacht hast.</p>
-                        <input type="text" id="category" name="name" maxLength={30} size="37" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="z.B.: Adjust variables" />
+                        <input type="text" id="category" name="name" maxLength={30} size="37" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="z.B.: Variablen angepasst" />
                     </div>
                     <div className='description-text'>
                         <p>Beschreibe etwas ausführlicher, was du genau gemacht hast.</p>
-                        <textarea id="description" name="explanation" maxLength={200} value={description} onChange={(e) => setDescription(e.target.value)} placeholder='z.B.: updated the variables to increase the width of the screen' />
+                        <textarea id="description" name="explanation" maxLength={200} value={description} onChange={(e) => setDescription(e.target.value)} placeholder='z.B.: Die Variablen wurden aktualisiert, um die Breite des Screens zu erhöhen.' />
                     </div>
                     {error && <p className='description-error'>Senden fehlerhaft: Nicht alle Felder wurden ausgefüllt!</p>}
                     <input className='description-send' type="submit" />

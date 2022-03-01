@@ -67,9 +67,11 @@ export const History = ({ isOpen }) => {
         children = <Empty description={"Bisher wurden keine Versionen gespeichert"} />
     } else {
         children = parsedData.log.map((item, i) => (
-            <Card title={item.message.replaceAll('-', ' ').replace(/\([\w*]*.*/, '')} extra={item.date.replace(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\b/, '').replace(/CET/, '').replace(/\b\d{4}\b/, '').replace(/:\d\d /, ' Uhr').replace(/999/, ',')}
+            <Card title={item.message.replaceAll('-', ' ').replace(/\([\w*]*.*/, '')} extra={item.date.replace(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\b/, '').replace(/CET/, '').replace(/\b\d{4}\b/, '').replace(/:\d\d /, ' Uhr').replace(/999/, ',')
+                .replace(/Mar/, 'März').replace(/Feb/, 'Februar').replace(/Apr/, 'April').replace(/Jan/, 'Januar').replace(/June/, 'Juni').replace(/May/, 'Mai').replace(/July/, 'Juli').replace(/Aug/, 'August').replace(/Sept/, 'September')
+                .replace(/Oct/, 'Oktober').replace(/Nov/, 'November').replace(/Dec/, 'Dezember')}
                 size='small' style={{ width: 330, marginBottom: "1em", marginLeft: "1.1em", border: "1px solid rgb(69, 69, 69)", borderRadius: "5px" }} headStyle={{ color: "white", background: "rgb(80, 80, 80)" }}
-                bodyStyle={{ background: "#efefef", borderRadius: "5px", padding:"0", paddingLeft:"0.8em", paddingRight:"0.8em", margin:"0" }} key={i}>
+                bodyStyle={{ background: "#efefef", borderRadius: "5px", padding: "0", paddingLeft: "0.8em", paddingRight: "0.8em", margin: "0" }} key={i}>
                 <p className='history-card-title'>{item.message.replaceAll('-', ' ').replace(/Neues Feature\(|Ausbesserung am Code\(/, '').replace(/\/[*.]*.*/, '').replace(/999/, ',')}</p>
                 <p className='history-card-description'>{item.message.replaceAll('-', ' ').replace(/.*\//, '').replace(/_/gm, '.').replace(/999/gm, ',')}</p>
                 <button className='history-load-branch-button' onClick={() => openConfirmationModalLoadCommit(item.message)}>Diese Version laden</button>
