@@ -4,6 +4,7 @@
     font-size: 15px;
     height: 420px;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .ant-empty-image{
@@ -25,29 +26,27 @@
     box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
 }
 
-.history-content-wrapper{
-    display: flex;
-    flex-direction: column;
-    margin-left: 0.5em;
-    margin-top: 0.5em;
-    margin-bottom: 0;
+.ant-card-small > .ant-card-head > .ant-card-head-wrapper > .ant-card-extra{
+    color: white;
 }
 
-.history-information{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.history-card-title{
+    font-size: 18px;
+    font-weight: bolder;
+    margin: 0;
 }
 
-.history-information > p{
-    -webkit-app-region: drag;
+.history-card-description{
+    font-size: 15px;
+    margin-bottom: 0.5em;
 }
 
 .history-load-branch-button{
     margin-right: 0.5em;
     margin-bottom: 0.5em;
-    background: rgb(63, 63, 63);
-    border: 2px solid rgb(33, 33, 33);
+    margin-left: 11.55em;
+    background: rgb(80, 80, 80);
+    border: 2px solid rgb(70, 70, 70);
     border-radius: 5px;
     color: white;
     text-decoration: none;
@@ -66,12 +65,6 @@
 
 p{
     margin-bottom: 0em;
-}
-
-.history-commit{
-    margin-bottom: 2em;
-    margin-right: 0.5em;
-    -webkit-app-region: drag;
 }
 
 .confirmation-modal-wrapper{
@@ -249,19 +242,25 @@ p{
     display: none;
 }
 
-.anticon-plus-circle{
-    font-size: 50px;
-    z-index: 5;
-    margin-left: 5.3em;
-    margin-top: 0.25em;
+.add-version{
+    background: rgb(63, 63, 63);
+    border: 2px solid rgb(33, 33, 33);
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
     cursor: pointer;
     transition: all 0.2s ease;
+    width: 150px;
+    z-index: 5;
+    margin-left: 13em;
+    margin-top: 1.5em;
 }
 
-.anticon-plus-circle:hover{
+.add-version:hover{
+    background: rgb(53, 53, 53);
     transform: translate3d(0, -2px, 0);
 }
 
-.anticon-plus-circle:active{
+.add-version:active{
     transform: translate3d(0, 1px, 0);
 }

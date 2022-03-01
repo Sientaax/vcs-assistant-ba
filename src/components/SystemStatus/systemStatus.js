@@ -10,11 +10,11 @@ export const SystemStatus = ({ isAssistantActive }) => {
                 {isAssistantActive === true ?
                     <>
                         <span className='systemStatus-circle-green'></span>
-                        <p className='systemStatus-info'>Assistenzsystem aktiv</p>
+                        <p className='systemStatus-info'>Verbunden mit IntelliJ</p>
                     </> :
                     <>
                         <span className='systemStatus-circle-red'></span>
-                        <p className='systemStatus-info'>Assistenzsystem inaktiv</p>
+                        <p className='systemStatus-info'>Nicht mit IntelliJ verbunden</p>
                     </>
                 }
             </div>

@@ -19,11 +19,13 @@
 
 .branchExists-placeholder{
     font-weight: bold;
-    margin-top: 0.5em;
+    margin-top: 1em;
 }
 
 .branchExists-explanation{
-    margin-top: 1em;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
     text-align: center;
 }
 
@@ -37,7 +39,7 @@
     transition: all 0.2s ease;
     width: 75px;
     margin: 0 auto;
-    margin-top: 1em;
+    margin-top: 0.5em;
 }
 
 .branchExists-confirmation-modal-yes:hover{

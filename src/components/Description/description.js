@@ -8,7 +8,7 @@ import './description.css';
 export const Description = ({ closeDescription }) => {
     const [category, setCategory] = useState('')
     const [description, setDescription] = useState('')
-    const [radio, setRadio] = useState('feat')
+    const [radio, setRadio] = useState('Neues Feature')
     const [error, setError] = useState(false)
 
     let commitMessage = ''
@@ -32,7 +32,7 @@ export const Description = ({ closeDescription }) => {
         } else if (category === '' && description !== '') {
             setError(true)
         } else {
-            commitMessage = radio + '(' + category.replace(/ +/g, '-') + '/' + description.replace(/ +/g, '-')
+            commitMessage = radio.replace(/ +/g, '-') + '(' + category.replace(/ +/g, '-').replace(/,/, '999') + '/' + description.replace(/ +/g, '-').replace(/(\r\n|\n|\r)/gm, '-').replace(/(\.|!|\?)/gm, '_').replace(/,/gm, '999')
             ws.send(JSON.stringify({
                 id: "commitMessage",
                 data: commitMessage,
@@ -51,22 +51,22 @@ export const Description = ({ closeDescription }) => {
                         <p>Hast du an etwas neuem gearbeitet oder etwas ausgebessert?</p>
                         <div className='description-radio' onChange={onChangeValue} >
                             <div className='description-radio-feat'>
-                                <input type='radio' id='feat' name='featOrFix' required value='feat' defaultChecked />
+                                <input type='radio' id='feat' name='featOrFix' required value='Neues Feature' defaultChecked />
                                 <label htmlFor='feat'>An etwas neuem</label>
                             </div>
                             <div className='description-radio-fix'>
-                                <input type='radio' id='fix' name='featOrFix' required value='fix' />
+                                <input type='radio' id='fix' name='featOrFix' required value='Ausbesserung am Code' />
                                 <label htmlFor='fix'>Etwas ausgebessert</label>
                             </div>
                         </div>
                     </div>
                     <div className='description-category'>
                         <p>Definiere bitte einen Überbegriff für das was du gemacht hast.</p>
-                        <input type="text" id="category" name="name" size="30" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="z.B.: Interface, Content, ..." />
+                        <input type="text" id="category" name="name" maxLength={30} size="37" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="z.B.: Adjust variables" />
                     </div>
                     <div className='description-text'>
-                        <p>Beschreibe in 3, 4 oder 5 Worten, was du genau gemacht hast.</p>
-                        <input type="text" id="description" name="explanation" size="30" value={description} onChange={(e) => setDescription(e.target.value)} placeholder='z.B.: spelling mistakes, ...' />
+                        <p>Beschreibe etwas ausführlicher, was du genau gemacht hast.</p>
+                        <textarea id="description" name="explanation" maxLength={200} value={description} onChange={(e) => setDescription(e.target.value)} placeholder='z.B.: updated the variables to increase the width of the screen' />
                     </div>
                     {error && <p className='description-error'>Senden fehlerhaft: Nicht alle Felder wurden ausgefüllt!</p>}
                     <input className='description-send' type="submit" />

@@ -22,7 +22,7 @@ export const Header = ({ openDescription, workingTimeCounter, setLogCounter }) =
                 </TabPane>
                 <TabPane tab={
                     <span>
-                        <HistoryOutlined /> Historie
+                        <HistoryOutlined /> Verlauf
                     </span>} key="2">
                     <History isOpen={() => openDescription()} />
                 </TabPane>
