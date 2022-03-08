@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 
-import { Empty, Card } from 'antd';
+import { Empty, Card, Spin } from 'antd';
 import { parsedData } from '../assistant';
 import { ws } from '../../App';
 
 import './history.css'
 
-export const History = ({ isOpen }) => {
+export const History = ({ isOpen, isSpinner, isSpinnerSecond }) => {
     let children;
 
     const [specificMessage, setSpecificMessage] = useState('')
@@ -16,7 +16,7 @@ export const History = ({ isOpen }) => {
     const openConfirmationModalLoadCommit = (exactMessage) => {
         document.getElementById('conformation-modal-wrapper').classList.remove('hidden')
         setSpecificMessage(exactMessage)
-        setCorrectMessage(exactMessage.replaceAll('-', ' ').replace(/Neues Feature\(|Ausbesserung am Code\(/, '').replace(/\/[*.]*.*/, '').replace(/999/, ','));
+        setCorrectMessage(exactMessage.replaceAll('-', ' ').replace(/Neue Funktionalität\(|Fehler behoben\(|Code kommentiert\(|Code formatiert\(/, '').replace(/\/[*.]*.*/, '').replace(/999/, ','));
         setLastItem(parsedData.log[0].message)
     }
 
@@ -26,7 +26,7 @@ export const History = ({ isOpen }) => {
 
     const openInspectingCommitModal = () => {
         document.getElementById('conformation-modal-wrapper').classList.add('hidden')
-        document.getElementById('inspecting-modal-wrapper').classList.remove('hidden')
+        document.getElementById('click-notifier').classList.remove('hidden')
         ws.send(JSON.stringify({
             id: "loadBranch",
             data: specificMessage,
@@ -63,6 +63,11 @@ export const History = ({ isOpen }) => {
         }))
     }
 
+    const closeClickNotifier = () => {
+        document.getElementById('click-notifier').classList.add('hidden')
+        document.getElementById('inspecting-modal-wrapper').classList.remove('hidden')
+    }
+
     if (parsedData === "" || parsedData.log.length === 0) {
         children = <Empty description={"Bisher wurden keine Versionen gespeichert"} />
     } else {
@@ -72,8 +77,8 @@ export const History = ({ isOpen }) => {
                 .replace(/Oct/, 'Oktober').replace(/Nov/, 'November').replace(/Dec/, 'Dezember')}
                 size='small' style={{ width: 330, marginBottom: "1em", marginLeft: "1.1em", border: "1px solid rgb(69, 69, 69)", borderRadius: "5px" }} headStyle={{ color: "white", background: "rgb(80, 80, 80)" }}
                 bodyStyle={{ background: "#efefef", borderRadius: "5px", padding: "0", paddingLeft: "0.8em", paddingRight: "0.8em", margin: "0" }} key={i}>
-                <p className='history-card-title'>{item.message.replaceAll('-', ' ').replace(/Neues Feature\(|Ausbesserung am Code\(/, '').replace(/\/[*.]*.*/, '').replace(/999/, ',')}</p>
-                <p className='history-card-description'>{item.message.replaceAll('-', ' ').replace(/.*\//, '').replace(/_/gm, '.').replace(/999/gm, ',')}</p>
+                <p className='history-card-title'>{item.message.replaceAll('-', ' ').replace(/Neue Funktionalität\(|Fehler behoben\(|Code kommentiert\(|Code formatiert\(/, '').replace(/\/[*.]*.*/, '').replace(/999/, ',').replace(/888/gm, '(').replace(/777/gm, ')')}</p>
+                <p className='history-card-description'>{item.message.replaceAll('-', ' ').replace(/.*\//, '').replace(/_/gm, '.').replace(/999/gm, ',').replace(/888/gm, '(').replace(/777/gm, ')')}</p>
                 <button className='history-load-branch-button' onClick={() => openConfirmationModalLoadCommit(item.message)}>Diese Version laden</button>
             </Card>
         ))
@@ -82,6 +87,8 @@ export const History = ({ isOpen }) => {
     return (
         <>
             <div className='history-wrapper' id='history-wrapper'>
+                { isSpinner && <Spin size='middle'/>}
+                { isSpinnerSecond && <Spin size='middle'/>}
                 {children}
             </div>
             <div className='confirmation-modal-wrapper hidden' id='conformation-modal-wrapper'>
@@ -91,16 +98,20 @@ export const History = ({ isOpen }) => {
                     <button className='confirmation-modal-no' onClick={closeConfirmationModalLoadCommit}>Nein</button>
                 </div>
             </div>
+            <div className='click-notifier hidden' id='click-notifier'>
+                <p>Bitte klicke einmal auf deinen Code, so dass sich dieser aktualisiert.</p>
+                <button className='click-notifier-confirmation-modal-yes' onClick={closeClickNotifier}>Okay</button>
+            </div>
             <div className='inspecting-modal-wrapper hidden' id='inspecting-modal-wrapper'>
                 <div className='inspecting-modal-text'>
                     <p className='inspecting-modal-text-one'>Aktuell ist die Version "{correctMessage}" in IntelliJ geladen.</p>
-                    <p className='inspecting-modal-text-three'>Bitte verändere keinen Code, solange dieses Overlay zu sehen ist!</p>
-                    <p className='inspecting-modal-text-four'>Klicke bitte einmal auf deinen Code, so dass sich dieser aktualisiert.</p>
-                    <p className='inspecting-modal-text-two'>Möchtest du wieder zu der letzt gespeicherten Version wechseln oder beginnend von dieser Version "{correctMessage}" erneut arbeiten?</p>
+                    <p className='inspecting-modal-text-three'>Bitte verändere keinen Code, solange dieses Overlay zu sehen ist, da dieser nicht gespeichert wird!</p>
+                    <p className='inspecting-modal-text-four'>Beachte die Möglichkeiten, die dir unten gegeben werden.</p>
+                    <p className='inspecting-modal-text-two'>Möchtest du wieder zu der letzt gespeicherten Version wechseln oder beginnend von der Version, die aktuell in IntelliJ geladen ist, erneut arbeiten?</p>
                 </div>
                 <div className='inspecting-modal-choices'>
                     <button className='inspecting-modal-yes' onClick={closeInspectingCommitModal}>Zurück zur letzt gespeicherten Version</button>
-                    <button className='inspecting-modal-no' onClick={openConfirmationModalApplyCommit}>Bei dieser Version bleiben</button>
+                    <button className='inspecting-modal-no' onClick={openConfirmationModalApplyCommit}>Von dieser Version erneut arbeiten</button>
                 </div>
             </div>
             <div className='confirmation-modal-wrapper-appy-commit hidden' id='confirmation-modal-appy-commit-wrapper'>

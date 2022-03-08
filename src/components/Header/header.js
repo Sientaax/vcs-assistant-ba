@@ -7,7 +7,7 @@ import { History } from '../History/history'
 
 import './header.css'
 
-export const Header = ({ openDescription, workingTimeCounter, setLogCounter }) => {
+export const Header = ({ openDescription, workingTimeCounter, setLogCounter, getSpinnerValue, getSpinnerValueSecond }) => {
 
     const { TabPane } = Tabs;
 
@@ -24,7 +24,7 @@ export const Header = ({ openDescription, workingTimeCounter, setLogCounter }) =
                     <span>
                         <HistoryOutlined /> Verlauf
                     </span>} key="2">
-                    <History isOpen={() => openDescription()} />
+                    <History isOpen={() => openDescription()} isSpinner={getSpinnerValue} isSpinnerSecond={getSpinnerValueSecond} />
                 </TabPane>
             </Tabs>
         </div>

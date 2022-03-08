@@ -19,6 +19,8 @@ export const Assistant = () => {
     const [showCommitPannel, setShowCommitPannel] = useState(0)
     const [getLogCounter, setGetLogCounter] = useState("0")
     const [popupExplanation, setPopupExplanation] = useState("")
+    const [spinner, setSpinner] = useState(false)
+    const [spinnerSecond, setSpinnerSecond] = useState(false)
 
     const isClicked = () => {
         document.getElementById('description-hidden').classList.remove('description-hidden')
@@ -28,6 +30,7 @@ export const Assistant = () => {
     const shutDownDescription = () => {
         document.getElementById('description-hidden').classList.add('description-hidden')
         document.getElementById('header-hidden').classList.remove('header-hidden')
+        setSpinner(true)
     }
 
     const shutDownPopup = () => {
@@ -37,6 +40,7 @@ export const Assistant = () => {
     const shutDownPopupDescription = () => {
         document.getElementById('popup-hidden-wrapper').classList.add('popup-hidden-wrapper')
         document.getElementById('header-hidden').classList.remove('header-hidden')
+        setSpinner(true)
     }
 
     const shutDownBranchExists = () => {
@@ -60,6 +64,8 @@ export const Assistant = () => {
     ws.onmessage = (evt) => {
         let parsedJson = JSON.parse(evt.data)
         if (parsedJson.countWorkingTime) {
+            setSpinner(false)
+            setSpinnerSecond(false)
             setWorkingTimeCounter(workingTimeCounter + 1)
             if (workingTimeCounter === 11) {
                 setWorkingTimeCounter(0)
@@ -93,6 +99,8 @@ export const Assistant = () => {
             setGetLogCounter(parsedJson.logCounter)
         } else if (parsedJson.branchExists) {
             document.getElementById("branch-exists-hidden").classList.remove("branch-exists-hidden")
+        } else if(parsedJson.loadBranch){
+            setSpinnerSecond(true)
         }
     }
 
@@ -100,7 +108,7 @@ export const Assistant = () => {
         <div className='assistant-wrapper' id='assistant-wrapper'>
             <div className='taskbar'></div>
             <div className='' id='header-hidden'>
-                <Header openDescription={isClicked} workingTimeCounter={getWorkingTimeCounter} setLogCounter={getLogCounter} />
+                <Header openDescription={isClicked} workingTimeCounter={getWorkingTimeCounter} setLogCounter={getLogCounter} getSpinnerValue={spinner} getSpinnerValueSecond={spinnerSecond} />
             </div>
             <div className='branch-exists-hidden' id='branch-exists-hidden'>
                 <BranchExists closebranchExists={shutDownBranchExists} />
