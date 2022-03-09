@@ -81,7 +81,6 @@ export const Description = ({ closeDescription }) => {
                         {descriptionError ? <textarea className='description-text-textarea-false' id="description" name="explanation" maxLength={200} value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Feld wurde nicht ausgefüllt! z.B.: Habe die draw() Methode kommentiert, damit der Code verständlicher wird.' />
                         : <textarea className='description-text-textarea-true' id="description" name="explanation" maxLength={200} value={description} onChange={(e) => setDescription(e.target.value)} placeholder='z.B.: Habe die draw() Methode kommentiert, damit der Code verständlicher wird.' />}
                     </div>
-                    {/* {error && <p className='description-error'>Senden fehlerhaft: Nicht alle Felder wurden ausgefüllt!</p>} */}
                     <input className='description-send' type="submit" />
                 </form>
             </div>
