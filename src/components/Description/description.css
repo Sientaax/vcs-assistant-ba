@@ -177,7 +177,26 @@
     text-align: center;
 }
 
-.description-category > input{
+.description-category-textarea-false{
+    display: block;
+    margin: 0 auto;
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+    color: white;
+    background: rgb(63, 63, 63);
+    border: 2px solid rgb(255, 0, 0);
+    border-radius: 5px;
+}
+
+.description-category-textarea-false::placeholder{
+    color: rgb(172, 172, 172);
+}
+
+.description-category-textarea-false:focus{
+    outline: none !important;
+}
+
+.description-category-textarea-true{
     display: block;
     margin: 0 auto;
     margin-top: 0.5em;
@@ -188,11 +207,11 @@
     border-radius: 5px;
 }
 
-.description-category > input::placeholder{
+.description-category-textarea-true::placeholder{
     color: rgb(172, 172, 172);
 }
 
-.description-category > input:focus{
+.description-category-textarea-true:focus{
     outline: none !important;
 }
 
@@ -201,7 +220,41 @@
     margin-bottom: 0.5em;
 }
 
-.description-text > textarea {
+.description-text-textarea-false {
+    display: block;
+    color: white;
+    margin: 0 auto;
+    background: rgb(63, 63, 63);
+    border: 2px solid rgb(255, 0, 0);
+    border-radius: 5px;
+    width: 20em;
+    height: 6em;
+    overflow-x: hidden;
+}
+
+.description-text-textarea-false::placeholder{
+    color: rgb(172, 172, 172)
+}
+
+.description-text-textarea-false:focus{
+    outline: none !important;
+}
+
+.description-text-textarea-false::-webkit-scrollbar{
+    width: 12px;
+}
+
+.description-text-textarea-false::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+
+.description-text-textarea-false::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+}
+
+.description-text-textarea-true {
     display: block;
     color: white;
     margin: 0 auto;
@@ -213,24 +266,24 @@
     overflow-x: hidden;
 }
 
-.description-text > textarea::placeholder{
+.description-text-textarea-true::placeholder{
     color: rgb(172, 172, 172)
 }
 
-.description-text > textarea:focus{
+.description-text-textarea-true:focus{
     outline: none !important;
 }
 
-.description-text > textarea::-webkit-scrollbar{
+.description-text-textarea-true::-webkit-scrollbar{
     width: 12px;
 }
 
-.description-text > textarea::-webkit-scrollbar-track{
+.description-text-textarea-true::-webkit-scrollbar-track{
     box-shadow: inset 0 0 15px rgba(0,0,0,0.3); 
     border-radius: 10px;
 }
 
-.description-text > textarea::-webkit-scrollbar-thumb{
+.description-text-textarea-true::-webkit-scrollbar-thumb{
     border-radius: 10px;
     box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
 }
@@ -296,11 +349,11 @@
     margin-top: 0.5em;
 }
 
-.description-error{
+/* .description-error{
     color: red;
     text-align: center;
     margin-top: 1em;
-}
+} */
 
 .hidden{
     display: none;

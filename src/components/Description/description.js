@@ -9,7 +9,8 @@ export const Description = ({ closeDescription }) => {
     const [category, setCategory] = useState('')
     const [description, setDescription] = useState('')
     const [radio, setRadio] = useState('Neue Funktionalität')
-    const [error, setError] = useState(false)
+    const [descriptionError, setDescriptionError] = useState(false)
+    const [categoryError, setCategoryError] = useState(false)
 
     let commitMessage = ''
 
@@ -26,11 +27,12 @@ export const Description = ({ closeDescription }) => {
 
     const buildCommitMessage = () => {
         if (category === '' && description === '') {
-            setError(true)
+            setDescriptionError(true)
+            setCategoryError(true)
         } else if (category !== '' && description === '') {
-            setError(true)
+            setDescriptionError(true)
         } else if (category === '' && description !== '') {
-            setError(true)
+            setCategoryError(true)
         } else {
             commitMessage = radio.replace(/ +/g, '-') + '(' + category.replace(/ +/g, '-').replace(/,/, '999').replace(/\(/, '888').replace(/\)/, '777') + '/' + description.replace(/ +/g, '-').replace(/(\r\n|\n|\r)/gm, '-').replace(/(\.|!|\?)/gm, '_').replace(/,/gm, '999').replace(/\(/, '888').replace(/\)/, '777')
             ws.send(JSON.stringify({
@@ -38,7 +40,8 @@ export const Description = ({ closeDescription }) => {
                 data: commitMessage,
             }))
             closeDescription();
-            setError(false);
+            setDescriptionError(false);
+            setCategoryError(false)
         }
     }
 
@@ -70,13 +73,15 @@ export const Description = ({ closeDescription }) => {
                     </div>
                     <div className='description-category'>
                         <p>Definiere bitte einen Überbegriff für das was du gemacht hast.</p>
-                        <input type="text" id="category" name="name" maxLength={30} size="37" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="z.B.: Methode kommentiert" />
+                        {categoryError ? <input className='description-category-textarea-false' type="text" id="category" name="name" maxLength={30} size="37" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Feld wurde nicht ausgefüllt! z.B.: Methode kommentiert" />
+                        :<input className='description-category-textarea-true' type="text" id="category" name="name" maxLength={30} size="37" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="z.B.: Methode kommentiert" />}
                     </div>
                     <div className='description-text'>
                         <p>Beschreibe etwas ausführlicher, was du genau gemacht hast.</p>
-                        <textarea id="description" name="explanation" maxLength={200} value={description} onChange={(e) => setDescription(e.target.value)} placeholder='z.B.: Habe die draw() Methode kommentiert, damit der Code verständlicher wird.' />
+                        {descriptionError ? <textarea className='description-text-textarea-false' id="description" name="explanation" maxLength={200} value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Feld wurde nicht ausgefüllt! z.B.: Habe die draw() Methode kommentiert, damit der Code verständlicher wird.' />
+                        : <textarea className='description-text-textarea-true' id="description" name="explanation" maxLength={200} value={description} onChange={(e) => setDescription(e.target.value)} placeholder='z.B.: Habe die draw() Methode kommentiert, damit der Code verständlicher wird.' />}
                     </div>
-                    {error && <p className='description-error'>Senden fehlerhaft: Nicht alle Felder wurden ausgefüllt!</p>}
+                    {/* {error && <p className='description-error'>Senden fehlerhaft: Nicht alle Felder wurden ausgefüllt!</p>} */}
                     <input className='description-send' type="submit" />
                 </form>
             </div>
